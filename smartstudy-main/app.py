@@ -86,7 +86,7 @@ def get_text_chunks(text):
 
 def get_vector_store(chunks):
     embeddings = get_embeddings()
-    return Chroma.from_texts(texts=chunks, embedding=embeddings, collection_name="studymate_documents")
+    return Chroma.from_texts(texts=chunks, embedding=embeddings, collection_name="smartstudy_documents")
 
 def get_answer_with_retry(question, vector_store, retries=3, delay=3):
     for attempt in range(1, retries + 1):
@@ -105,7 +105,7 @@ def get_answer(question, vector_store):
         return "I couldn't find relevant information in your uploaded documents."
     context = "\n\n".join(d.page_content for d in docs)
     prompt = ChatPromptTemplate.from_template("""
-You are Study Mate AI, a helpful and precise study assistant.
+You are SmartStudy AI, a helpful and precise study assistant.
 Use ONLY the document context below to answer the student's question.
 Rules:
 - Do not use outside knowledge.
